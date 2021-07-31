@@ -30,13 +30,13 @@ func connectToDB() (*mongo.Client, error) {
 }
 
 func initializeRedis() (*redis.Client, error) {
-	rdb := redis.NewClient(&redis.Options{
-		Addr:     os.Getenv("REDIS_URL"),
-		Password: "", // no password set
-		DB:       0,  // use default DB
-	})
+	url, err := redis.ParseURL(os.Getenv("REDIS_URL"))
+	if err != nil {
+		return nil, err
+	}
+	rdb := redis.NewClient(url)
 
-	err := rdb.Ping(ctx).Err()
+	err = rdb.Ping(ctx).Err()
 	if err != nil {
 		log.Println(err)
 	}
