@@ -7,6 +7,7 @@ import (
 	"go.mongodb.org/mongo-driver/mongo/options"
 	"go.mongodb.org/mongo-driver/mongo/readpref"
 	"log"
+	"os"
 )
 
 var ctx = context.Background()
@@ -29,8 +30,13 @@ func connectToDB() (*mongo.Client, error) {
 }
 
 func initializeRedis() (*redis.Client, error) {
+	port := os.Getenv("PORT")
+	if port == "" {
+		port = "8080"
+	}
+
 	rdb := redis.NewClient(&redis.Options{
-		Addr:     "localhost:6379",
+		Addr:     ":" + port,
 		Password: "", // no password set
 		DB:       0,  // use default DB
 	})
