@@ -6,6 +6,7 @@ import (
 	"net/http"
 )
 
+// As I didn't use any framework for routers, handlers etc. I've used top two functions(mongoRequest and redisRequest) for handling the API calls.
 func mongoRequest(w http.ResponseWriter, r *http.Request) {
 	switch r.Method {
 	case "GET":

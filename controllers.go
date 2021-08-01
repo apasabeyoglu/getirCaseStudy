@@ -1,12 +1,14 @@
 package main
 
 import (
-	"go.mongodb.org/mongo-driver/bson"
-	"go.mongodb.org/mongo-driver/mongo"
 	"log"
 	"time"
+
+	"go.mongodb.org/mongo-driver/bson"
+	"go.mongodb.org/mongo-driver/mongo"
 )
 
+// I have used simple names for functions as it was not a big project.
 func getDataFromDB(startDate, endDate string, minCount, maxCount int32) ([]*Post, error) {
 	client, err := connectToDB()
 	if err != nil {
