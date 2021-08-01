@@ -71,17 +71,15 @@ func getFromMongoDB(w http.ResponseWriter, r *http.Request) {
 func getFromRedis(w http.ResponseWriter, r *http.Request) {
 	var (
 		request  string
-		response Redis
+		response *Redis
 	)
-
-	err := r.ParseMultipartForm(0)
-	if err != nil {
-		createHttpResponse(w, http.StatusInternalServerError, nil, err)
-	}
 
 	request = r.FormValue("key")
 
-	response, err = get(request)
+	response, err := get(request)
+	if err != nil {
+		createHttpResponse(w, http.StatusInternalServerError, nil, err)
+	}
 
 	jsonResponse, err := json.Marshal(response)
 	if err != nil {
