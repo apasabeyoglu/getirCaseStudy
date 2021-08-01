@@ -22,7 +22,7 @@ func Test_GetFromMongoDB_success(t *testing.T) {
 	req.Header.Set("Content-Type", "application/json")
 	rr := httptest.NewRecorder()
 
-	getFromMongoDB(rr, req)
+	mongoRequest(rr, req)
 
 	require.Nil(t, err)
 	require.Equal(t, 200, rr.Code)
@@ -38,7 +38,7 @@ func Test_GetFromRedis_success(t *testing.T) {
 
 	req := httptest.NewRequest("GET", "/getir", nil)
 
-	getFromRedis(rr, req)
+	redisRequest(rr, req)
 
 	require.Nil(t, err)
 	require.Equal(t, 200, rr.Code)
@@ -48,7 +48,7 @@ func Test_GetFromRedis_success(t *testing.T) {
 func Test_WriteToRedis_success(t *testing.T) {
 	err := os.Setenv("REDIS_URL", "redis://localhost:6379")
 	if err != nil {
-		require.Nil(t, err)
+		require.NoError(t, err)
 	}
 
 	request := Redis{
@@ -62,7 +62,7 @@ func Test_WriteToRedis_success(t *testing.T) {
 	req.Header.Set("Content-Type", "application/json")
 	rr := httptest.NewRecorder()
 
-	writeToRedis(rr, req)
+	redisRequest(rr, req)
 
 	require.Nil(t, err)
 	require.Equal(t, 200, rr.Code)

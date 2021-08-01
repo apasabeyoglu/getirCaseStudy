@@ -29,7 +29,7 @@ func Test_GetDataFromDB_TimeParse_error(t *testing.T) {
 func Test_Write_success(t *testing.T) {
 	err := os.Setenv("REDIS_URL", "redis://localhost:6379")
 	if err != nil {
-		require.Nil(t, err)
+		require.NoError(t, err)
 	}
 	response, err := write("testKey", "testValue")
 
@@ -44,7 +44,7 @@ func Test_Write_success(t *testing.T) {
 func Test_Write_Redis_failure(t *testing.T) {
 	err := os.Setenv("REDIS_URL", "redis://localhost:9999")
 	if err != nil {
-		require.Nil(t, err)
+		require.NoError(t, err)
 	}
 	response, err := write("testKey", "testValue")
 
@@ -56,7 +56,7 @@ func Test_Write_Redis_failure(t *testing.T) {
 func Test_Get_success(t *testing.T) {
 	err := os.Setenv("REDIS_URL", "redis://localhost:6379")
 	if err != nil {
-		require.Nil(t, err)
+		require.NoError(t, err)
 	}
 	response, err := get("testKey")
 
@@ -71,7 +71,7 @@ func Test_Get_success(t *testing.T) {
 func Test_Get_Redis_failure(t *testing.T) {
 	err := os.Setenv("REDIS_URL", "redis://localhost:9999")
 	if err != nil {
-		require.Nil(t, err)
+		require.NoError(t, err)
 	}
 	response, err := get("testKey")
 
