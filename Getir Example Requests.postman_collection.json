@@ -1,0 +1,109 @@
+{
+	"info": {
+		"_postman_id": "d82bd783-8591-41b9-a214-621544b413b4",
+		"name": "Getir Example Requests",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Getir from Mongo",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"startDate\": \"2001-01-01\",\n    \"endDate\": \"2021-01-01\",\n    \"minCount\": 8000,\n    \"maxCount\": 8200\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://secure-falls-62285.herokuapp.com/getir/mongo",
+					"protocol": "https",
+					"host": [
+						"secure-falls-62285",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"getir",
+						"mongo"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Getir From Redis",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "key",
+							"value": "8001",
+							"type": "text"
+						}
+					],
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://secure-falls-62285.herokuapp.com/getir",
+					"protocol": "https",
+					"host": [
+						"secure-falls-62285",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"getir"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Getir Save to Redis",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"key\": \"8001\",\n    \"value\": \"9002\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://secure-falls-62285.herokuapp.com/getir",
+					"protocol": "https",
+					"host": [
+						"secure-falls-62285",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"getir"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
